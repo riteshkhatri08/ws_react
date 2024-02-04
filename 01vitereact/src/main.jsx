@@ -3,6 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import App from './App.jsx';
 import './index.css';
+// You can directly import jsx too
+// import {jsx as _jsx} from "react/jsx-dev-runtime"
 
 // Creating an element using apis in React library
 // Properties/ attributes
