@@ -15,6 +15,12 @@ REACT is a framework
 node-package-executor npx is the most basic way to create a react app
 create-react-app -is a utility but it is very bulky, prefer Vite or Parcel instead.
 
+## Create a react app using create-react-app utility
+
+```shell
+npx create-react-app <project-dir>
+```
+
 ## Directory structure
 
 package.json - This file contains all required libraries along with version
