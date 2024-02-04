@@ -18,20 +18,25 @@ function App() {
   // useState returns a setter function and a reference to the
   // literal value
   let [counter, setCounter] = useState(15);
-
+  const COUNTER_MAX = 20;
+  const COUNTER_MIN = 0;
   // let counter = 15;
 
   function addValue() {
-    console.log(`${counter++}`);
-    // Invoke setter method to update this variable vaule in front end
-    setCounter(counter);
-    // Counter value is updated vwherever it is referred
+    if (counter < COUNTER_MAX) {
+      console.log(`${counter++}`);
+      // Invoke setter method to update this variable vaule in front end
+      setCounter(counter);
+      // Counter value is updated vwherever it is referred
+    }
   }
 
   function subtractValue() {
-    console.log(`${counter--}`);
-    // Invoke setter method to update this variable vaule in front end
-    setCounter(counter);
+    if (counter > COUNTER_MIN) {
+      console.log(`${counter--}`);
+      // Invoke setter method to update this variable vaule in front end
+      setCounter(counter);
+    }
   }
 
   // Below tree is parsed through babel
