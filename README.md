@@ -39,10 +39,7 @@ npm create vite@latest
 ```
 
 Enter Project Name and select framework
-
-```Vite Input
 ![alt text](image.png)
-```
 
 Install node modules if not present in project dir
 
