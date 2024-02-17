@@ -25,7 +25,10 @@ function App() {
     setPassword(pass);
   }, [passLength, includeNumbers, includeSpecialCharacters, passLength]);
 
-  
+  // Call back effect passed in useEffect first param is triggered whenever a re render happens on dependencies pass in second param array
+  useEffect(() => {
+    generatePassword();
+  }, [passLength, includeNumbers, includeSpecialCharacters]);
   return (
     <>
       <h1 className="text-center text-4xl text-white">Password Generator</h1>
