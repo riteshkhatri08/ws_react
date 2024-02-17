@@ -6,6 +6,26 @@ function App() {
   const [includeNumbers, setIncludeNumbers] = useState(false);
   const [includeSpecialCharacters, setIncludeSpecialCharacters] =
     useState(false);
+
+  // Use callback optimizes memory usage ,  this is called only if new value of dependencies (second param) is different from previous
+  // params
+  const generatePassword = useCallback(() => {
+    let pass = "";
+    let str = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+    if (includeNumbers) {
+      str += "0987654321";
+    }
+    if (includeSpecialCharacters) {
+      str += "!@#$%^&*";
+    }
+    for (let index = 0; index < passLength; index++) {
+      pass += str.charAt(Math.random() * str.length + 1);
+    }
+    console.log("PASSWORD = " + pass);
+    setPassword(pass);
+  }, [passLength, includeNumbers, includeSpecialCharacters, passLength]);
+
+  
   return (
     <>
       <h1 className="text-center text-4xl text-white">Password Generator</h1>
