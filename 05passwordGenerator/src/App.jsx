@@ -21,14 +21,14 @@ function App() {
     for (let index = 0; index < passLength; index++) {
       pass += str.charAt(Math.random() * str.length + 1);
     }
-    console.log("PASSWORD = " + pass);
+
     setPassword(pass);
   }, [passLength, includeNumbers, includeSpecialCharacters, passLength]);
 
   // Call back effect passed in useEffect first param is triggered whenever a re render happens on dependencies pass in second param array
   useEffect(() => {
     generatePassword();
-  }, [passLength, includeNumbers, includeSpecialCharacters]);
+  }, [passLength, includeNumbers, includeSpecialCharacters, generatePassword]);
   return (
     <>
       <h1 className="text-center text-4xl text-white">Password Generator</h1>
