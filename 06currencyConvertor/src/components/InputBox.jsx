@@ -34,6 +34,7 @@ function InputBox({
           placeholder="Amount"
           disabled={amountDisable}
           value={amount}
+          min="0"
           // && condition to make sure onAmountchange impl is passed
           onChange={(e) =>
             onAmountChange && onAmountChange(Number(e.target.value))
