@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 function App() {
   const [password, setPassword] = useState("Password");
@@ -29,6 +29,15 @@ function App() {
   useEffect(() => {
     generatePassword();
   }, [passLength, includeNumbers, includeSpecialCharacters, generatePassword]);
+
+  // use ref hook
+  const passwordReference = useRef(null);
+
+  const copyToClipboard = () => {
+    // Write the data to the clipboard
+    window.navigator.clipboard.writeText(password);
+  };
+
   return (
     <>
       <h1 className="text-center text-4xl text-white">Password Generator</h1>
@@ -41,8 +50,15 @@ function App() {
               value={password}
               className="bg-gray-700 px-2 py-2 rounded-s-md flex-grow"
               readOnly
+              
             />
-            <button className="bg-blue-500 px-2 py-2 rounded-e-md">COPY</button>
+            <button
+              className="bg-blue-500 px-2 py-2 rounded-e-md"
+              onClick={() => copyToClipboard()}
+              ref={passwordReference}
+            >
+              COPY
+            </button>
           </div>
           <div className="flex flex-row flex-wrap gap-x-5">
             <label>
