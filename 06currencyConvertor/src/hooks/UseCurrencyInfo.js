@@ -1,7 +1,7 @@
 // This is a custom hook
 // custom hooks can also use exisiting hooks from core react lib
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // this hook takes in currency symbol returns some data about currency like conversion rate etc
 
@@ -21,7 +21,7 @@ function useCurrencyInfo(currency) {
     fetch(url)
       .then((res) => res.json())
       .then((res) => setData(res[currency]));
-    console.log(data);
+    console.log("data " + data);
   }, [currency]);
 
   return data;
