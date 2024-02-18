@@ -50,7 +50,6 @@ function App() {
               value={password}
               className="bg-gray-700 px-2 py-2 rounded-s-md flex-grow"
               readOnly
-              
             />
             <button
               className="bg-blue-500 px-2 py-2 rounded-e-md"
