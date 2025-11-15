@@ -39,8 +39,7 @@ const ListControl: React.FC<ListControlProps> = ({ list, listSetter }) => {
         listSetter({ items: [] });
     };
     return (
-        <div className="listControl"
-        >
+        <div className="listControl">
             <TextField
                 id="new-todo-item-input-filled-basic"
                 label="Add new item"
@@ -49,11 +48,9 @@ const ListControl: React.FC<ListControlProps> = ({ list, listSetter }) => {
                 value={inputText}
                 onChange={handleChange}
                 onKeyDown={handleInputKeyPress}
+                className="itemInput"
             />
-            <div
-            className="listControlButtonPanel"
-               
-            >
+            <div className="listControlButtonPanel">
                 <Button
                     id="addItemButton"
                     variant="contained"

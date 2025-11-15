@@ -6,12 +6,14 @@ const TodoApp: React.FC = () => {
     const [list, setlist] = useState<TodoListProps>({ items: [] });
     const TodoList = getTodoList();
     const ListControl = getListControl();
-
+    
     return (
         <div className="todoAppContainer">
             <div className='appTitle'>Welcome to TODO App</div>
-            <ListControl listSetter={setlist} list={list} />
-            <TodoList {...list} />
+            <>
+                <ListControl listSetter={setlist} list={list} />
+                <TodoList {...list} />
+            </>
         </div>
 
     );
