@@ -1,8 +1,8 @@
 import React, { useState, type ChangeEvent } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import type { ListProps } from "./interface/Common";
-import { v4 as uuidv4 } from 'uuid';
+import { type ListProps, createTask } from "./interface/Common";
+
 
 
 
@@ -23,7 +23,7 @@ const ListControl: React.FC<ListProps> = ({ list, listSetter }) => {
     const handleAddButtonClick = () => {
         if (inputText.trim().length !== 0) {
             // Add item to list
-            listSetter([{ id: uuidv4(), value: inputText }, ...list]);
+            listSetter([createTask(inputText), ...list]);
 
             // Clear text
             setInputText("");

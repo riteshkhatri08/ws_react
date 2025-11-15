@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getTodoList } from './TodoList';
 import getListControl from './ListControl';
-import {type Task, type ListProps} from './interface/Common'
+import {type Task} from './interface/Common'
 
 const TodoApp: React.FC = () => {
   
