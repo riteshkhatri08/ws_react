@@ -1,8 +1,82 @@
-#root {
-  padding: 2rem;
-  border: 5px solid red;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+body {
+  background-color: #121212;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
 }
 
+#root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.todoAppContainer {
+  display: flex;
+  flex-flow: column;
+  margin: 10px;
+  padding: 10px;
+  width: 100%;
+  border: 2px solid rgba(128, 128, 128, 0.561);
+  border-radius: 20px;
+}
+
+.appTitle {
+  padding: 16px;
+  text-align: center;
+  font-size: xx-large;
+  font-family: Arial, Helvetica, sans-serif;
+  color: azure;
+}
+
+.todoList {
+  display: flex;
+}
+
+.todoList-ul {
+  display: flex;
+  flex-flow: column nowrap;
+  list-style-type: none;
+  list-style-position: outside;
+  border: 2px solid rgba(0.4, 0.4, 0.4, 0.4);
+  border-radius: 10px;
+  gap: 8px;
+  padding: 16px;
+  overflow-y: scroll;
+}
+
+.listItem {
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  padding: 8px;
+  border: 2px solid white;
+  border-radius: 8px;
+}
+
+.listItemLabel {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.listControl {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  gap: 16px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+.listControlButtonPanel {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}

@@ -30,7 +30,7 @@ const ListControl: React.FC<ListControlProps> = ({ list, listSetter }) => {
     const handleAddButtonClick = () => {
         if (inputText.trim().length !== 0) {
             // Add item to list
-            listSetter({ items: list.items.concat(inputText) });
+            listSetter({ items: [inputText, ...list.items] });
             // Clear text
             setInputText("");
         }
@@ -39,14 +39,7 @@ const ListControl: React.FC<ListControlProps> = ({ list, listSetter }) => {
         listSetter({ items: [] });
     };
     return (
-        <Box
-            sx={{
-                display: "flex",
-                flexFlow: "column wrap",
-                justifyContent: "space-evenly",
-                gap: "16px",
-                border: "2px solid blue",
-            }}
+        <div className="listControl"
         >
             <TextField
                 id="new-todo-item-input-filled-basic"
@@ -57,14 +50,9 @@ const ListControl: React.FC<ListControlProps> = ({ list, listSetter }) => {
                 onChange={handleChange}
                 onKeyDown={handleInputKeyPress}
             />
-            <Box
-                sx={{
-                    display: "flex",
-                    flexFlow: "row wrap",
-                    justifyContent: "space-evenly",
-                    gap: "16px",
-                    border: "2px solid green",
-                }}
+            <div
+            className="listControlButtonPanel"
+               
             >
                 <Button
                     id="addItemButton"
@@ -80,8 +68,8 @@ const ListControl: React.FC<ListControlProps> = ({ list, listSetter }) => {
                 >
                     Clear
                 </Button>
-            </Box>
-        </Box>
+            </div>
+        </div>
     );
 };
 

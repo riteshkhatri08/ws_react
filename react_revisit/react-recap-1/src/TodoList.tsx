@@ -7,7 +7,7 @@ export interface TodoListProps {
 
 const TodoList: React.FC<TodoListProps> = ({ items }) => {
     return (
-        <ul>
+        <ul className="todoList-ul">
             {items.map((value: string, index: number) => (
                 // Add a list item for each item
                 <ListItem key={"listItem-" + index} itemText={value} index={index} />

@@ -1,3 +1,4 @@
+import Button from "@mui/material/Button";
 import React from "react";
 
 const ListItem: React.FC<{ itemText: string; index: number }> = ({
@@ -5,9 +6,10 @@ const ListItem: React.FC<{ itemText: string; index: number }> = ({
     index,
 }) => {
     return (
-        <li key={"li-"+index}>
-            <input type="checkbox" id={"input-" + index} value={itemText} />{" "}
-            <label htmlFor={"input-" + index}>{itemText}</label>{" "}
+        <li key={"li-" + index} className="listItem">
+                <input type="checkbox" id={"input-" + index} value={itemText} />{" "}
+                <label className="listItemLabel" htmlFor={"input-" + index}>{itemText}</label>{" "}
+                <Button variant="contained" size="small">x</Button>
         </li>
     );
 };
