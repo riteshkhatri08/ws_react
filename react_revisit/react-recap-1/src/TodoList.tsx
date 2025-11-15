@@ -1,20 +1,17 @@
-import React from 'react';
-
+import React from "react";
+import ListItem from "./ListItem";
 
 export interface TodoListProps {
     items: string[];
 }
 
-
 const TodoList: React.FC<TodoListProps> = ({ items }) => {
-    console.log(items);
     return (
         <ul>
-            {
-                items.map((item: string, index: number) =>
-                    (<li key={index} > {item}</li>)
-                )
-            }
+            {items.map((value: string, index: number) => (
+                // Add a list item for each item
+                <ListItem itemText={value} index={index} />
+            ))}
         </ul>
     );
 };
