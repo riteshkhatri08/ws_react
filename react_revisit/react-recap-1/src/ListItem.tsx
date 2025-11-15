@@ -1,19 +1,21 @@
 import Button from "@mui/material/Button";
 import React from "react";
-const ListItem: React.FC<{ itemText: string; index: number;}> = ({
-    itemText,
-    index,
+import type { ListProps, Task } from "./interface/Common";
+const ListItem: React.FC<{ task: Task; listProps: ListProps; }> = ({
+    task,
+    listProps,
 }) => {
-    const removeItem = (itemText: string) => {
-        console.log("todo")
+    const removeItem = (id: string) => {
+        listProps.listSetter(listProps.list.filter((current) => current.id === id ? false : true));
     }
+    
     return (
-        <li key={"li-" + index} className="listItem">
-            <input type="checkbox" id={"input-" + index} value={itemText} />{" "}
-            <label className="listItemLabel" htmlFor={"input-" + index}>
-                {itemText}
+        <li key={"li-" + task.id} className="listItem">
+            <input type="checkbox" id={"input-" + task.id} value={task.value} />{" "}
+            <label className="listItemLabel" htmlFor={"input-" + task.id}>
+                {task.value}
             </label>{" "}
-            <Button variant="contained" size="small" onClick={() => removeItem(itemText)}>
+            <Button variant="contained" size="small" onClick={() => removeItem(task.id)}>
                 x
             </Button>
         </li>

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { getTodoList, type TodoListProps } from './TodoList';
+import { getTodoList } from './TodoList';
 import getListControl from './ListControl';
-const TodoApp: React.FC = () => {
+import {type Task, type ListProps} from './interface/Common'
 
-    const [list, setlist] = useState<TodoListProps>({ items: [] });
+const TodoApp: React.FC = () => {
+  
+    const [list, setList] = useState<Task[]>([]);
+
     const TodoList = getTodoList();
     const ListControl = getListControl();
     
@@ -11,8 +14,8 @@ const TodoApp: React.FC = () => {
         <div className="todoAppContainer">
             <div className='appTitle'>Welcome to TODO App</div>
             <>
-                <ListControl listSetter={setlist} list={list} />
-                <TodoList {...list} />
+                <ListControl listSetter={setList} list={list} />
+                <TodoList listSetter={setList} list={list} />
             </>
         </div>
 

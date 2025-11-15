@@ -1,19 +1,12 @@
 import React, { useState, type ChangeEvent } from "react";
-import type { TodoListProps } from "./TodoList";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
+import type { ListProps } from "./interface/Common";
+import { v4 as uuidv4 } from 'uuid';
 
-// const handleAddItemButtonClick = (changeEvent: React.ChangeEvent<HTMLInputElement>, listSetter: React.Dispatch<React.SetStateAction<TodoListProps>>, list: TodoListProps) => {
-//     listSetter({ items: list.items.concat([changeEvent.target.value]) });
-// }
 
-interface ListControlProps {
-    list: TodoListProps;
-    listSetter: React.Dispatch<React.SetStateAction<TodoListProps>>;
-}
 
-const ListControl: React.FC<ListControlProps> = ({ list, listSetter }) => {
+const ListControl: React.FC<ListProps> = ({ list, listSetter }) => {
     const [inputText, setInputText] = useState<string>("");
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -30,13 +23,14 @@ const ListControl: React.FC<ListControlProps> = ({ list, listSetter }) => {
     const handleAddButtonClick = () => {
         if (inputText.trim().length !== 0) {
             // Add item to list
-            listSetter({ items: [inputText, ...list.items] });
+            listSetter([{ id: uuidv4(), value: inputText }, ...list]);
+
             // Clear text
             setInputText("");
         }
     };
     const handleClearButtonClick = () => {
-        listSetter({ items: [] });
+        listSetter([]);
     };
     return (
         <div className="listControl">

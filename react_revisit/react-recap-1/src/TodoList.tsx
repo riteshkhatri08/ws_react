@@ -1,16 +1,14 @@
 import React from "react";
 import ListItem from "./ListItem";
+import {type Task, type ListProps} from './interface/Common'
 
-export interface TodoListProps {
-    items: string[];
-}
 
-const TodoList: React.FC<TodoListProps> = ({ items }) => {
+const TodoList: React.FC<ListProps> = (listProps) => {
     return (
         <ul className="todoList-ul">
-            {items.map((value: string, index: number) => (
+            {listProps.list.map((task: Task) => (
                 // Add a list item for each item
-                <ListItem key={"listItem-" + index} itemText={value} index={index} />
+                <ListItem key={"listItem-" + task.id} task={task} listProps={listProps} />
             ))}
         </ul>
     );
