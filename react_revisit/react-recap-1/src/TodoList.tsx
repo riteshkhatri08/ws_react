@@ -10,7 +10,7 @@ const TodoList: React.FC<TodoListProps> = ({ items }) => {
         <ul>
             {items.map((value: string, index: number) => (
                 // Add a list item for each item
-                <ListItem itemText={value} index={index} />
+                <ListItem key={"listItem-" + index} itemText={value} index={index} />
             ))}
         </ul>
     );
@@ -19,3 +19,4 @@ const TodoList: React.FC<TodoListProps> = ({ items }) => {
 export function getTodoList() {
     return TodoList;
 }
+

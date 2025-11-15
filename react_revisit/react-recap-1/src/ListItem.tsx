@@ -5,7 +5,7 @@ const ListItem: React.FC<{ itemText: string; index: number }> = ({
     index,
 }) => {
     return (
-        <li key={index}>
+        <li key={"li-"+index}>
             <input type="checkbox" id={"input-" + index} value={itemText} />{" "}
             <label htmlFor={"input-" + index}>{itemText}</label>{" "}
         </li>
