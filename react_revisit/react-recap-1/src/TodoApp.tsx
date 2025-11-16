@@ -1,28 +1,13 @@
-import React, { useState, createContext } from 'react';
-import { getTodoList } from './TodoList';
-import getListControl from './ListControl';
-import { type Task } from './interface/Common'
-
-export interface TodoAppContextType {
-    list: Task[]
-    setList: React.Dispatch<React.SetStateAction<Task[]>>
-}
-
-const defaultTodoAppContext: TodoAppContextType = {
-    list: [],
-    setList: () => { }
-}
-
-export const TodoAppContext = createContext<TodoAppContextType>(defaultTodoAppContext);
+import React from 'react';
+import TodoList from './TodoList';
+import ListControl from './ListControl';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 const TodoApp: React.FC = () => {
-    const [list, setList] = useState<Task[]>([]);
-
-    const TodoList = getTodoList();
-    const ListControl = getListControl();
 
     return (
-        <TodoAppContext.Provider value={{ list, setList }} >
+        <Provider store={store}>
             <div className="todoAppContainer">
                 <div className='appTitle'>TODO APP</div>
                 <>
@@ -30,7 +15,7 @@ const TodoApp: React.FC = () => {
                     <TodoList />
                 </>
             </div>
-        </TodoAppContext.Provider>
+        </Provider>
     );
 };
 

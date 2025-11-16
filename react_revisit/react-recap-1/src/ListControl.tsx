@@ -1,44 +1,57 @@
-import React, { useContext, useState, type ChangeEvent } from "react";
+import React, { useState, type ChangeEvent } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { createTask } from "./interface/Common";
+import { createTask } from "./Common";
 import Axios from 'axios';
-import { TodoAppContext } from "./TodoApp";
-
+import { useDispatch } from "react-redux";
+import { addNewTask, clearAllTasks } from './store';
 
 
 
 const ListControl: React.FC = () => {
-    const { list, setList } = useContext(TodoAppContext);
+    // dispatch to call reducers 
+    const dispatch = useDispatch();
+
+    // to hold the task typed in input
     const [inputText, setInputText] = useState<string>("");
 
+    // Adds a new task by calling the createTask reducer
     const addTask = (taskValue: string): boolean => {
         if (taskValue.trim().length !== 0) {
             // Add item to list
-            setList([createTask(taskValue), ...list]);
+            dispatch(addNewTask(createTask(taskValue)));
             return true;
         }
         return false;
     }
 
+    // event handlers
+
+    // keep track of text updates in input 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setInputText(event.target.value);
     };
 
+    // to add a new task if enter key is pressed
     const handleInputKeyPress = (
         event: React.KeyboardEvent<HTMLInputElement>
     ) => {
         if (event.key === "Enter") {
-            handleAddButtonClick();
+            addTask(inputText) && setInputText("");
         }
     };
+
+    // too add a new task on add button click
     const handleAddButtonClick = () => {
         addTask(inputText) && setInputText("");
     };
+
+    // to remove all tasks on clear button click
     const handleClearButtonClick = () => {
-        setList([]);
+        dispatch(clearAllTasks());
     };
 
+    // to add a random task on "add random" button click
     const handleAddRandomButtonClick = () => {
         Axios.get("https://dummyjson.com/todos/random").then((res) => addTask(res.data.todo));
     }
@@ -81,7 +94,5 @@ const ListControl: React.FC = () => {
     );
 };
 
-function getListControl() {
-    return ListControl;
-}
-export default getListControl;
+
+export default ListControl;

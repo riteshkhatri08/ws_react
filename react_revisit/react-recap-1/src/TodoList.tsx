@@ -1,10 +1,11 @@
-import React, {useContext} from "react";
+import React from "react";
 import ListItem from "./ListItem";
-import {type Task} from './interface/Common'
-import { TodoAppContext } from "./TodoApp";
+import { type Task } from './Common'
+import { useSelector } from "react-redux";
 
 const TodoList: React.FC = () => {
-    const {list} = useContext(TodoAppContext);
+    const list = useSelector((state: any) => state.todoList.tasks);
+    // const {list} = useContext(TodoAppContext);
     return (
         <ul className="todoList-ul">
             {list.map((task: Task) => (
@@ -15,7 +16,4 @@ const TodoList: React.FC = () => {
     );
 };
 
-export function getTodoList() {
-    return TodoList;
-}
-
+export default TodoList;

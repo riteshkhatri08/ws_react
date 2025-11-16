@@ -10,9 +10,3 @@ export const createTask = (value: string, isComplete?: boolean): Task => {
     return { id: uuidv4(), value: value, isComplete: isComplete || false }
 }
 
-export interface ListProps {
-    list: Task[];
-    listSetter: React.Dispatch<React.SetStateAction<Task[]>>;
-}
-
-
