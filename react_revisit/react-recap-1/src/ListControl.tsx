@@ -1,19 +1,21 @@
-import React, { useState, type ChangeEvent } from "react";
+import React, { useContext, useState, type ChangeEvent } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { type ListProps, createTask } from "./interface/Common";
+import { createTask } from "./interface/Common";
 import Axios from 'axios';
+import { TodoAppContext } from "./TodoApp";
 
 
 
 
-const ListControl: React.FC<ListProps> = ({ list, listSetter }) => {
+const ListControl: React.FC = () => {
+    const { list, setList } = useContext(TodoAppContext);
     const [inputText, setInputText] = useState<string>("");
 
     const addTask = (taskValue: string): boolean => {
-          if (taskValue.trim().length !== 0) {
+        if (taskValue.trim().length !== 0) {
             // Add item to list
-            listSetter([createTask(taskValue), ...list]);
+            setList([createTask(taskValue), ...list]);
             return true;
         }
         return false;
@@ -34,7 +36,7 @@ const ListControl: React.FC<ListProps> = ({ list, listSetter }) => {
         addTask(inputText) && setInputText("");
     };
     const handleClearButtonClick = () => {
-        listSetter([]);
+        setList([]);
     };
 
     const handleAddRandomButtonClick = () => {

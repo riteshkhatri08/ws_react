@@ -1,14 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import ListItem from "./ListItem";
-import {type Task, type ListProps} from './interface/Common'
+import {type Task} from './interface/Common'
+import { TodoAppContext } from "./TodoApp";
 
-
-const TodoList: React.FC<ListProps> = (listProps) => {
+const TodoList: React.FC = () => {
+    const {list} = useContext(TodoAppContext);
     return (
         <ul className="todoList-ul">
-            {listProps.list.map((task: Task) => (
+            {list.map((task: Task) => (
                 // Add a list item for each item
-                <ListItem key={"listItem-" + task.id} task={task} listProps={listProps} />
+                <ListItem key={"listItem-" + task.id} task={task} />
             ))}
         </ul>
     );

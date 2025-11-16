@@ -1,18 +1,19 @@
 
-import React from "react";
-import type { ListProps, Task } from "./interface/Common";
+import React, { useContext } from "react";
+import type { Task } from "./interface/Common";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-const ListItem: React.FC<{ task: Task; listProps: ListProps; }> = ({
+import { TodoAppContext } from "./TodoApp";
+const ListItem: React.FC<{ task: Task }> = ({
     task,
-    listProps,
 }) => {
+    const { list, setList } = useContext(TodoAppContext);
     const removeTask = (id: string) => {
-        listProps.listSetter(listProps.list.filter((current) => current.id === id ? false : true));
+        setList(list.filter((current) => current.id === id ? false : true));
     }
     const completeTask = (id: string) => {
-        listProps.listSetter(listProps.list.map((current) => { return current.id === id ? { ...current, isComplete: true } : current }));
+        setList(list.map((current) => { return current.id === id ? { ...current, isComplete: true } : current }));
     }
 
     return (
