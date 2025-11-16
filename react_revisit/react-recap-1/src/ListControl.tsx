@@ -2,12 +2,22 @@ import React, { useState, type ChangeEvent } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { type ListProps, createTask } from "./interface/Common";
+import Axios from 'axios';
 
 
 
 
 const ListControl: React.FC<ListProps> = ({ list, listSetter }) => {
     const [inputText, setInputText] = useState<string>("");
+
+    const addTask = (taskValue: string): boolean => {
+          if (taskValue.trim().length !== 0) {
+            // Add item to list
+            listSetter([createTask(taskValue), ...list]);
+            return true;
+        }
+        return false;
+    }
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setInputText(event.target.value);
@@ -21,17 +31,15 @@ const ListControl: React.FC<ListProps> = ({ list, listSetter }) => {
         }
     };
     const handleAddButtonClick = () => {
-        if (inputText.trim().length !== 0) {
-            // Add item to list
-            listSetter([createTask(inputText), ...list]);
-
-            // Clear text
-            setInputText("");
-        }
+        addTask(inputText) && setInputText("");
     };
     const handleClearButtonClick = () => {
         listSetter([]);
     };
+
+    const handleAddRandomButtonClick = () => {
+        Axios.get("https://dummyjson.com/todos/random").then((res) => addTask(res.data.todo));
+    }
     return (
         <div className="listControl">
             <TextField
@@ -58,6 +66,13 @@ const ListControl: React.FC<ListProps> = ({ list, listSetter }) => {
                     onClick={handleClearButtonClick}
                 >
                     Clear
+                </Button>
+                <Button
+                    id="addRandomButton"
+                    variant="contained"
+                    onClick={handleAddRandomButtonClick}
+                >
+                    Add Random Task
                 </Button>
             </div>
         </div>

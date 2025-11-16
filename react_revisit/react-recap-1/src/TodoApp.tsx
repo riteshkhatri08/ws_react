@@ -12,7 +12,7 @@ const TodoApp: React.FC = () => {
     
     return (
         <div className="todoAppContainer">
-            <div className='appTitle'>Welcome to TODO App</div>
+            <div className='appTitle'>TODO APP</div>
             <>
                 <ListControl listSetter={setList} list={list} />
                 <TodoList listSetter={setList} list={list} />

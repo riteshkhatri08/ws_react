@@ -12,7 +12,6 @@ const ListItem: React.FC<{ task: Task; listProps: ListProps; }> = ({
         listProps.listSetter(listProps.list.filter((current) => current.id === id ? false : true));
     }
     const completeTask = (id: string) => {
-        console.log("completing task - ", id, "list is ", listProps.list)
         listProps.listSetter(listProps.list.map((current) => { return current.id === id ? { ...current, isComplete: true } : current }));
     }
 
